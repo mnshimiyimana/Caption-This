@@ -1,0 +1,53 @@
+{
+  "name": "awesome-frontend-typescript-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^1.5.0",
+    "@cloudinary/react": "^1.13.0",
+    "@cloudinary/url-gen": "^1.19.0",
+    "@prisma/client": "^5.11.0",
+    "@react-oauth/google": "^0.12.1",
+    "antd": "^5.15.3",
+    "axios": "^1.6.8",
+    "cloudinary": "^2.0.3",
+    "encoding": "^0.1.13",
+    "firebase": "^10.9.0",
+    "gec": "^1.0.3",
+    "jwt-decode": "^4.0.0",
+    "next": "^14.1.4",
+    "next-auth": "^5.0.0-beta.15",
+    "next-images": "^1.8.5",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-redux": "9.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^40.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^16.3.1",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
+    "husky": "^9.0.11",
+    "postcss": "^8",
+    "prettier": "^3.1.0",
+    "prisma": "^5.11.0",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.2.2"
+  }
+}
