@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons"
 import { useGetUserCaptionsQuery } from "@/lib/services/captionEndpoints"
 import useUserData, { type UserData } from "@/lib/hooks/handleUserDetails"
+import { skipToken } from "@reduxjs/toolkit/query"
 
 function Captions() {
   const userData = useUserData() as UserData
@@ -15,7 +16,9 @@ function Captions() {
     data: captionsData,
     isLoading: isCaptionsLoading,
     isError: isCaptionsError,
-  } = useGetUserCaptionsQuery({ userId: userData?.id })
+  } = useGetUserCaptionsQuery(
+    userData?.id ? { userId: userData?.id } : skipToken,
+  )
 
   const [deleteSuccess, setDeleteSuccess] = useState(false)
 

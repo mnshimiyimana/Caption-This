@@ -1,6 +1,8 @@
+"use client"
 import React from "react"
 import Explore from "../../components/landing"
-function page() {
+
+function Page() {
   return (
     <div>
       <Explore />
@@ -8,4 +10,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

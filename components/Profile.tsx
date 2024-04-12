@@ -14,7 +14,7 @@ const Profile: React.FC = () => {
   const ddeta = useUserData()
 
   return (
-    <div className="md:block hidden sticky top-28 max-h-screen ">
+    <div className="md:block hidden sticky top-28 max-h-[200px] ">
       <div className="bg-[#1D1D1D] w-72 p-6 grid justify-center gap-8 rounded-md">
         <div className="grid justify-center relative">
           <div className="flex items-center">

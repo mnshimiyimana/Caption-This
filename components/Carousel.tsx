@@ -7,13 +7,15 @@ import {
   ShareAltOutlined,
   CommentOutlined,
 } from "@ant-design/icons"
-import { Button } from "antd"
+import { Button, Tooltip } from "antd"
 import Theme from "./theme/Theme"
 import { useGetCaptionsQuery } from "../lib/services/captionEndpoints"
 import { usePutLitsMutation } from "@/lib/services/litsEndpoints"
 function Carousel(props: any) {
   const [currentCaptions, setCurrentCaptions] = useState<any>()
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [shareCaptionToolTip, setShareCaptionToolTip] =
+    useState("Share this caption")
 
   const { data: captionsData } = useGetCaptionsQuery({
     memeId: props.data.id,
@@ -66,9 +68,24 @@ function Carousel(props: any) {
     // )
   }
 
+  const onCopyCaption = () => {
+    navigator.clipboard
+      .writeText(captions[currentIndex]?.text)
+      .then(() => {
+        setShareCaptionToolTip("Added to clipboard")
+      })
+      .catch(() => {
+        setShareCaptionToolTip("Failed to add to clipboard!")
+      })
+
+    setTimeout(() => {
+      setShareCaptionToolTip("Share this caption")
+    }, 2000)
+  }
+
   return (
     <div className="space-y-4">
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-3">
         {captions.length > 0 && (
           <Theme>
             <Button
@@ -102,18 +119,22 @@ function Carousel(props: any) {
       <div className="bg-grey rounded-md flex justify-between p-2">
         <div className="flex gap-2">
           {captions[currentIndex]?.litCount ? (
-            <FireFilled
-              onClick={() =>
-                handleLikeCaption(captions[currentIndex]?.id || "")
-              }
-              style={{ color: "#CB245C" }}
-            />
+            <Tooltip title="Unlit this caption">
+              <FireFilled
+                onClick={() =>
+                  handleLikeCaption(captions[currentIndex]?.id || "")
+                }
+                style={{ color: "#CB245C" }}
+              />
+            </Tooltip>
           ) : (
-            <FireOutlined
-              onClick={() =>
-                handleLikeCaption(captions[currentIndex]?.id || "")
-              }
-            />
+            <Tooltip title="Lit this caption">
+              <FireOutlined
+                onClick={() =>
+                  handleLikeCaption(captions[currentIndex]?.id || "")
+                }
+              />
+            </Tooltip>
           )}
           {/* <p>{captions[currentIndex]?.litCount}</p> */}
         </div>
@@ -126,8 +147,19 @@ function Carousel(props: any) {
           </p>
         </div>
         <div className="flex gap-2">
-          <ShareAltOutlined />
-          <CommentOutlined className="cursor-pointer" onClick={props.onClick} />
+          <Tooltip title={shareCaptionToolTip}>
+            <ShareAltOutlined
+              className="cursor-pointer"
+              onClick={onCopyCaption}
+            />
+          </Tooltip>
+
+          <Tooltip title="Add caption to this meme">
+            <CommentOutlined
+              className="cursor-pointer"
+              onClick={props.onClick}
+            />
+          </Tooltip>
         </div>
       </div>
     </div>

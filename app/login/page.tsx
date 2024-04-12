@@ -35,7 +35,7 @@ function Login() {
       const result = await signInWithPopup(auth, provider)
       const user = result.user
       const idToken = await user.getIdToken()
-      // console.log("Firebase ID token:", idToken)
+      console.log("Firebase ID token:", idToken)
 
       // After getting the token, update the data state
       setGoogleToken(idToken)
@@ -47,27 +47,29 @@ function Login() {
   // const handleSignInWithGoogle = void ()()
 
   return (
-    <div className="grid items-center justify-center gap-24 pt-40">
-      <div className="space-y-8 grid items-center justify-center">
-        <div className="flex items-center justify-center">
-          <Image
-            src={"/images/logo_icon_white.png"}
-            alt={"Logo"}
-            width={40}
-            height={40}
-          />
+    <div className="bg-gray h-screen">
+      <div className="grid items-center justify-center gap-24 pt-40">
+        <div className="space-y-8 grid items-center justify-center">
+          <div className="flex items-center justify-center">
+            <Image
+              src={"/images/logo_icon_white.png"}
+              alt={"Logo"}
+              width={40}
+              height={40}
+            />
+          </div>
+          <p className="text-2xl font-medium">CaptionThis</p>
         </div>
-        <p className="text-2xl font-medium">CaptionThis</p>
-      </div>
-      <div className="text-center space-y-8 border-t w-80 pt-12">
-        <p> Sign in with</p>
-        <Icons
-          onClick={async () => {
-            await handleSignIn()
-          }}
-        />
-        <div>
-          <p className="text-xs">Skip</p>
+        <div className="text-center space-y-8 border-t w-80 pt-12">
+          <p> Sign in with</p>
+          <Icons
+            onClick={async () => {
+              await handleSignIn()
+            }}
+          />
+          <div>
+            <p className="text-xs">Skip</p>
+          </div>
         </div>
       </div>
     </div>

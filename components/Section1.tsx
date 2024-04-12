@@ -10,7 +10,7 @@ function Section1() {
   ]
 
   return (
-    <div className="bg-gray space-y-6 md:sticky top-28 max-h-screen pb-10">
+    <div className="bg-gray space-y-6 md:sticky top-28 max-h-[150px] pb-10">
       <div>
         {icons.map((item, index) => (
           <div key={index} className="flex text-md gap-2 space-y-3 font-medium">

@@ -7,9 +7,12 @@ import {
   PicLeftOutlined,
   ExclamationCircleOutlined,
 } from "@ant-design/icons"
+import { Button, Spin } from "antd"
 import { useHandleSwitchView } from "./hooks"
 import { switchIconStyles } from "./consts"
 import Details from "@/components/Details"
+import Theme from "../theme/Theme"
+import { withPrivateRoute } from "../protected-route"
 
 function LandingPage() {
   const {
@@ -37,14 +40,16 @@ function LandingPage() {
           </span>
         </div>
 
-        {isFetching && !isLoading && <p>Updating data.....</p>}
+        {isFetching && !isLoading && (
+          <p className="text-pink mb-4">Searching.....</p>
+        )}
 
         {isError ? (
           <p>Error fetching data</p>
         ) : (
           <>
             {isLoading ? (
-              <p>Loading..</p>
+              <p className="text-pink">Loading..</p>
             ) : (
               <>
                 {!memesState || memesState.length === 0 ? (
@@ -71,12 +76,16 @@ function LandingPage() {
 
         {!!data?.data?.memes?.length && (
           <div className="flex justify-center mt-4">
-            <button
-              onClick={handleLoadMore}
-              className="bg-pink hover:bg-pink text-white font-medium text-xs py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              {isFetching && !isLoading ? "Loading..." : "Load More"}
-            </button>
+            <Theme>
+              <Button
+                onClick={handleLoadMore}
+                type="primary"
+                loading={isFetching && !isLoading}
+                className="bg-pink hover:bg-pink text-white font-medium text-xs py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                {isFetching && !isLoading ? "Loading..." : "Load More"}
+              </Button>
+            </Theme>
           </div>
         )}
       </div>
@@ -84,4 +93,4 @@ function LandingPage() {
   )
 }
 
-export default LandingPage
+export default withPrivateRoute(LandingPage)

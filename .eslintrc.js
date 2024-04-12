@@ -50,6 +50,7 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": ["off"],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-misused-promises": ["off"],
+    "@typescript-eslint/no-floating-promises": ["off"],
     "no-alert": "error",
     "no-dupe-keys": "error",
     "no-else-return": "error",

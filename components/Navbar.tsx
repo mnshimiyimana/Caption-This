@@ -24,10 +24,16 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
     setHovered(false)
   }
 
+  // const handleLogout = () => {
+  //   localStorage.clear()
+  //   sessionStorage.clear()
+  //   router.push(routes.logout)
+  // }
   const handleLogout = () => {
     localStorage.clear()
     sessionStorage.clear()
-    router.push(routes.logout)
+    router.replace(routes.logout)
+    window.location.replace(routes.logout) // Replace current location with the logout route
   }
 
   const handleSearch = (value: string) => {
@@ -64,11 +70,11 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
           />
         </InputStyle>
       </div>
-      <div className="flex gap-2 ">
+      <div className="flex gap-2 duration-150">
         <div
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="flex gap-3"
+          className="flex gap-3 cursor-pointer"
         >
           <Image
             src={userData?.picture}
@@ -78,7 +84,7 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
             className="object-cover rounded-full w-10 h-10 border-2 border-white"
           />
           <p className="text-sm items-center md:flex hidden ">
-            {userData?.firstName}_{userData?.lastName}
+            {userData?.firstName} {userData?.lastName}
           </p>
           {hovered && (
             <LogoutOutlined

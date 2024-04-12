@@ -5,8 +5,9 @@ import Navbar from "@/components/Navbar"
 import Profile from "@/components/Profile"
 import Edit from "@/components/Edit"
 import Captions from "@/components/Captions"
+import { withPrivateRoute } from "@/components/protected-route"
 
-function page() {
+function Page() {
   return (
     <div>
       <div className="bg-gray h-full">
@@ -30,4 +31,4 @@ function page() {
   )
 }
 
-export default page
+export default withPrivateRoute(Page)
