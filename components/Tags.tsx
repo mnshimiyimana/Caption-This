@@ -90,7 +90,7 @@ function Tags() {
   }
 
   return (
-    <div className="bg-gray space-y-1 ">
+    <div className="bg-gray space-y-1 animate-fade-up animate-delay-300 animate-once ">
       <div className="flex gap-7 text-xs bg-[#1D1D1D] p-5 rounded-md">
         <div className="w-20">
           {imageUrl && (

@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { SearchOutlined, LogoutOutlined } from "@ant-design/icons"
 import { Input } from "antd"
 import InputStyle from "./theme/Input"
@@ -45,7 +46,7 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
   }
 
   return (
-    <div className="flex justify-between lg:px-24 md:px-12 px-8 py-2 border-b-2 border-black shadow-lg bg-gray sticky top-0 max-h-screen z-20 ">
+    <div className="flex justify-between lg:px-24 md:px-12 px-8 py-2 border-b-2 border-black shadow-lg bg-gray sticky top-0 max-h-screen z-20 animate-fade-down animate-delay-300 animate-once  ">
       <div className="flex gap-6">
         <Image
           src={"/images/logo_icon_white.png"}
@@ -53,9 +54,12 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
           width={30}
           height={9}
         />
-        <p className="text-xl font-medium items-center md:flex hidden">
+        <Link
+          className="text-xl font-medium items-center md:flex hidden"
+          href={"/home"}
+        >
           CaptionThis
-        </p>
+        </Link>
       </div>
       <div className="lg:w-96 w-auto text-white">
         <InputStyle>

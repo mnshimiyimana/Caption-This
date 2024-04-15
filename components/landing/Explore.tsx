@@ -7,7 +7,7 @@ interface ExploreProps {
 function Explore({ memes }: ExploreProps) {
   return (
     <div>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-3 gap-5 animate-fade-up animate-delay-300 animate-once">
         {memes?.map((meme: any, index: number) => (
           <div key={index} className="relative">
             <Image

@@ -1,13 +1,14 @@
 "use client"
 import { useEffect, useState } from "react"
 import { useGetMemesQuery } from "@/lib/services/memeEndpoints"
+import { useDeleteMemesMutation } from "@/lib/services/memeEndpoints"
 import { useSelector } from "react-redux"
 import { type RootState } from "@/lib/store/store"
 
 export const useHandleSwitchView = () => {
   const [viewType, setViewType] = useState<"Grid" | "Row">("Grid")
   const [currentPage, setCurrentPage] = useState(0)
-  const [searchQuery, setSearchQuery] = useState<any>("")
+  const [setSearchQuery] = useState<any>("")
   const [memesState, setMemesState] = useState<any[]>([])
 
   const handleSearch = (value: string) => {
@@ -25,9 +26,14 @@ export const useHandleSwitchView = () => {
     size: 1,
   })
 
-  console.log("the key:", searchQuery)
+  
+
+  // console.log("the key:", searchQuery)
 
   const memes = response?.data?.data?.memes
+
+  console.log("memes:", memes)
+
 
   // useEffect(() => {
   //   if (memes?.length) {

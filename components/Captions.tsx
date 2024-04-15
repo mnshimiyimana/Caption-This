@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react"
 import {
   FireOutlined,
@@ -5,22 +6,70 @@ import {
   ShareAltOutlined,
   DeleteOutlined,
 } from "@ant-design/icons"
-import { useGetUserCaptionsQuery } from "@/lib/services/captionEndpoints"
+import {
+  useGetUserCaptionsQuery,
+  useDeleteCaptionsMutation,
+} from "@/lib/services/captionEndpoints"
 import useUserData, { type UserData } from "@/lib/hooks/handleUserDetails"
 import { skipToken } from "@reduxjs/toolkit/query"
+import { Tooltip } from "antd"
 
 function Captions() {
   const userData = useUserData() as UserData
+  const [shareCaptionToolTip, setShareCaptionToolTip] =
+    useState("Share this caption")
 
   const {
     data: captionsData,
     isLoading: isCaptionsLoading,
     isError: isCaptionsError,
+    refetch: refetchCaptions,
   } = useGetUserCaptionsQuery(
     userData?.id ? { userId: userData?.id } : skipToken,
   )
 
   const [deleteSuccess, setDeleteSuccess] = useState(false)
+
+  const [deleteCaptionMutation] = useDeleteCaptionsMutation()
+
+  // const handleDeleteCaption = async (captionId: string) => {
+  //   try {
+  //     await deleteCaptionMutation({ captionId })
+  //     setDeleteSuccess(true)
+  //     // Refetch captions after deletion
+  //     refetchCaptions()
+  //   } catch (error) {
+  //     console.error("Error deleting caption:", error)
+  //   }
+  // }
+
+  const handleDeleteCaption = async (captionId: string) => {
+    try {
+      await deleteCaptionMutation({ captionId })
+      setDeleteSuccess(true)
+      // Refetch captions after deletion
+      refetchCaptions()
+      console.log("CAP ID:", captionId)
+    } catch (error) {
+      console.error("Error deleting caption:", error)
+    }
+  }
+
+  const onCopyCaption = (text: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setShareCaptionToolTip("Added to clipboard")
+      })
+      .catch(() => {
+        setShareCaptionToolTip("Failed to add to clipboard!")
+      })
+
+    // Reset the tooltip message after 2 seconds
+    setTimeout(() => {
+      setShareCaptionToolTip("Share this caption")
+    }, 2000)
+  }
 
   if (isCaptionsLoading) return <div>Loading...</div>
   if (isCaptionsError) return <div>Error fetching data</div>
@@ -30,10 +79,10 @@ function Captions() {
   }
 
   return (
-    <div className="py-10">
+    <div className="py-10 animate-fade-up animate-delay-300 animate-once space-y-2">
       {deleteSuccess && (
         <div
-          className="bg-black border border-gray text-pink px-4 py-3 text-xs rounded relative"
+          className="bg-black border border-gray text-pink px-4 py-4 text-sm rounded relative"
           role="alert"
         >
           <strong className="font-bold">Success!</strong>
@@ -76,8 +125,19 @@ function Captions() {
                     <FireOutlined />
                   )}
                   <span className="flex gap-3">
-                    <ShareAltOutlined />
-                    <DeleteOutlined />
+                    <Tooltip title={shareCaptionToolTip}>
+                      <ShareAltOutlined
+                        onClick={() => onCopyCaption(caption.text)}
+                      />
+                    </Tooltip>
+                    <Tooltip title="Delete this caption">
+                      <DeleteOutlined
+                        // onClick={() => handleDeleteCaption(caption.id)}
+                        onClick={async () =>
+                          await handleDeleteCaption(caption.id)
+                        }
+                      />
+                    </Tooltip>
                   </span>
                 </div>
               </div>

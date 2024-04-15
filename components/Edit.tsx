@@ -9,7 +9,7 @@ const Edit: React.FC = () => {
   const ddeta = useUserData() as UserData
 
   return (
-    <div>
+    <div className="animate-fade-up animate-delay-300 animate-once">
       <div className="bg-black py-6 px-4 rounded-md">
         <div className="flex justify-between">
           <div className="flex gap-4">

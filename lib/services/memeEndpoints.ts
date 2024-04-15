@@ -26,6 +26,15 @@ const memeEndpoints = api.injectEndpoints({
       }),
     }),
 
+
+    deleteMemes: builder.mutation<any, { memeId: string }>({
+      invalidatesTags: ["GetMemes"],
+      query: ({ memeId }) => ({
+        url: `/memes/${memeId}`,
+        method: "DELETE",
+      }),
+    }),
+
     createMeme: builder.mutation<
       any,
       { imageSmall: string; imageLarge: string; tags: string }
@@ -44,5 +53,5 @@ const memeEndpoints = api.injectEndpoints({
   }),
 })
 
-export const { useGetMemesQuery, useCreateMemeMutation, useGetMemesIDQuery } =
+export const { useGetMemesQuery, useCreateMemeMutation, useGetMemesIDQuery, useDeleteMemesMutation } =
   memeEndpoints

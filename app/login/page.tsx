@@ -48,7 +48,7 @@ function Login() {
 
   return (
     <div className="bg-gray h-screen">
-      <div className="grid items-center justify-center gap-24 pt-40">
+      <div className="grid items-center justify-center gap-24 pt-52">
         <div className="space-y-8 grid items-center justify-center">
           <div className="flex items-center justify-center">
             <Image

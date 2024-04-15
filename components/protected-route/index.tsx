@@ -1,5 +1,6 @@
 "use client"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
+import { routes } from "@/lib/constants"
 
 export function withPrivateRoute(Component: any) {
   return function WithAuth(props: any) {
@@ -13,8 +14,8 @@ export function withPrivateRoute(Component: any) {
       return false
     }
 
-    if (!isAuthenticated) {
-      router.push("/login")
+    if (!isAuthenticated()) {
+      router.push(routes.login)
       return null
     }
 

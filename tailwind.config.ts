@@ -9,22 +9,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        
-      },
-      colors : {
-        grey : '#44525C',
-        pink : '#CB245C',
-        gray: '#262626',
-        slate: '#4F4F4F',
+      backgroundImage: {},
+      colors: {
+        grey: "#44525C",
+        pink: "#CB245C",
+        gray: "#262626",
+        slate: "#4F4F4F",
       },
 
-      Button : {
-        defaultHoverBg: '#CB245C',
-
-      }
+      Button: {
+        defaultHoverBg: "#CB245C",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animated")],
 }
 export default config

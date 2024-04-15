@@ -71,7 +71,7 @@ function Details({ memes }: DetailsProps) {
                 </div>
               </div>
               <div>
-                <EllipsisOutlined />
+                <EllipsisOutlined className="cursor-pointer" />
               </div>
             </div>
             <div>
