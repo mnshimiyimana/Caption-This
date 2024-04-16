@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar"
 import Profile from "@/components/Profile"
 import Edit from "@/components/Edit"
 import Captions from "@/components/Captions"
-import { withPrivateRoute } from "@/components/protected-route"
 
 function Page() {
   return (
@@ -31,4 +30,4 @@ function Page() {
   )
 }
 
-export default withPrivateRoute(Page)
+export default Page

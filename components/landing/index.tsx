@@ -12,7 +12,6 @@ import { useHandleSwitchView } from "./hooks"
 import { switchIconStyles } from "./consts"
 import Details from "@/components/Details"
 import Theme from "../theme/Theme"
-import { withPrivateRoute } from "../protected-route"
 
 function LandingPage() {
   const {
@@ -93,4 +92,4 @@ function LandingPage() {
   )
 }
 
-export default withPrivateRoute(LandingPage)
+export default LandingPage
