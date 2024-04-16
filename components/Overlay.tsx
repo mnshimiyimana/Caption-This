@@ -29,6 +29,7 @@ const Overlay = (props: any) => {
       <Modal
         visible={true}
         onCancel={closeOverlay}
+        centered
         footer={[
           <>
             <Theme>
@@ -66,7 +67,7 @@ const Overlay = (props: any) => {
           <InputStyle>
             <TextArea
               rows={4}
-              className="bg-[#44525C] hover:bg-[#44525C] text-white"
+              className="bg-grey hover:bg-grey text-white"
               placeholder=""
               value={value}
               onChange={(e: {

@@ -41,31 +41,31 @@ function Details({ memes }: DetailsProps) {
   return (
     <div className="grid gap-5">
       {memes.map((meme: Meme) => (
-        <div key={meme?.id} className="bg-black h-full rounded-md">
+        <div key={meme?.id} className="bg-[#1D1D1D] h-full rounded-md">
           <div>
             <img
               src={meme?.imageSmall}
               alt={`Image ${meme?.id}`}
               width={200}
               height={200}
-              className="object-cover w-full rounded-md h-auto"
+              className="object-cover w-full rounded-t-md h-auto"
             />
           </div>
           <div className="p-4 space-y-4">
-            <div className="flex justify-between gap-4">
-              <div className="flex gap-5 justify-center items-center">
+            <div className="flex justify-between gap-4 px-4">
+              <div className="flex gap-3 justify-center items-center">
                 <Image
                   src={meme?.user?.picture}
                   alt={`${meme?.user?.firstName} ${meme?.user?.lastName}`}
                   width={100}
                   height={100}
-                  className="object-cover rounded-full w-10 h-10 border-2 border-white"
+                  className="object-cover rounded-full w-8 h-8 border-2 border-white"
                 />
                 <div className="text-xs">
                   <p className="font-semibold">
                     {meme?.user?.firstName} {meme?.user?.lastName}
                   </p>
-                  <span className="text-grey">
+                  <span className="text-[#82878A] text-xs font-light">
                     {formatDate(meme?.createdAt)}
                   </span>
                 </div>

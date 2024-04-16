@@ -12,12 +12,20 @@ import {
 } from "@/lib/services/captionEndpoints"
 import useUserData, { type UserData } from "@/lib/hooks/handleUserDetails"
 import { skipToken } from "@reduxjs/toolkit/query"
-import { Tooltip } from "antd"
+import { Tooltip, Modal, Button } from "antd"
+import Style from "./theme/Confirm"
+import Theme from "./theme/Theme"
 
 function Captions() {
   const userData = useUserData() as UserData
   const [shareCaptionToolTip, setShareCaptionToolTip] =
     useState("Share this caption")
+  const [deleteSuccess, setDeleteSuccess] = useState(false)
+  const [captionIdToDelete, setCaptionIdToDelete] = useState<string | null>(
+    null,
+  )
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const {
     data: captionsData,
@@ -28,30 +36,28 @@ function Captions() {
     userData?.id ? { userId: userData?.id } : skipToken,
   )
 
-  const [deleteSuccess, setDeleteSuccess] = useState(false)
-
   const [deleteCaptionMutation] = useDeleteCaptionsMutation()
 
-  // const handleDeleteCaption = async (captionId: string) => {
-  //   try {
-  //     await deleteCaptionMutation({ captionId })
-  //     setDeleteSuccess(true)
-  //     // Refetch captions after deletion
-  //     refetchCaptions()
-  //   } catch (error) {
-  //     console.error("Error deleting caption:", error)
-  //   }
-  // }
-
   const handleDeleteCaption = async (captionId: string) => {
+    setCaptionIdToDelete(captionId)
+    setIsModalOpen(true)
+  }
+
+  const confirmDelete = async () => {
     try {
-      await deleteCaptionMutation({ captionId })
-      setDeleteSuccess(true)
-      // Refetch captions after deletion
-      refetchCaptions()
-      console.log("CAP ID:", captionId)
+      setIsDeleting(true) // Set isDeleting to true when the deletion process starts
+      if (captionIdToDelete) {
+        await deleteCaptionMutation({ captionId: captionIdToDelete })
+        setDeleteSuccess(true)
+        refetchCaptions()
+        setTimeout(() => setDeleteSuccess(false), 3000)
+      }
     } catch (error) {
       console.error("Error deleting caption:", error)
+    } finally {
+      setIsModalOpen(false)
+      setCaptionIdToDelete(null)
+      setIsDeleting(false)
     }
   }
 
@@ -64,8 +70,6 @@ function Captions() {
       .catch(() => {
         setShareCaptionToolTip("Failed to add to clipboard!")
       })
-
-    // Reset the tooltip message after 2 seconds
     setTimeout(() => {
       setShareCaptionToolTip("Share this caption")
     }, 2000)
@@ -80,6 +84,44 @@ function Captions() {
 
   return (
     <div className="py-10 animate-fade-up animate-delay-300 animate-once space-y-2">
+      <Style>
+        <Modal
+          title="Confirm Deletion"
+          open={isModalOpen}
+          onCancel={() => setIsModalOpen(false)}
+          centered
+          footer={[
+            <>
+              <Theme>
+                <Button
+                  key="cancel"
+                  className="bg-white"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  No
+                </Button>
+              </Theme>
+
+              <Theme>
+                <Button
+                  key="submit"
+                  type="primary"
+                  className="bg-pink"
+                  loading={isDeleting}
+                  onClick={confirmDelete} // Attach confirmDelete function here
+                >
+                  {isDeleting ? "Deleting..." : "Yes"}
+                </Button>
+              </Theme>
+            </>,
+          ]}
+        >
+          <p className="text-white">
+            Are you sure you want to delete this caption?
+          </p>
+        </Modal>
+      </Style>
+
       {deleteSuccess && (
         <div
           className="bg-black border border-gray text-pink px-4 py-4 text-sm rounded relative"
@@ -90,18 +132,6 @@ function Captions() {
             {" "}
             The caption was successfully deleted.
           </span>
-          <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-            <svg
-              className="fill-current h-6 w-6 text-pink"
-              role="button"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              onClick={() => setDeleteSuccess(false)}
-            >
-              <title>Close</title>
-              <path d="M14.354 5.354a2 2 0 10-2.828 2.828L10 7.828l-1.525 1.525a2 2 0 10-2.828-2.828L7.172 5.5 5.647 3.975a2 2 0 00-2.828 2.828L4.172 8.328 2.646 9.854a2 2 0 102.828 2.828L7.172 11.5l1.525 1.525a2 2 0 102.828-2.828L9.828 8.328l1.525-1.525a2 2 0 012.828 2.828L11.828 11.5l1.525 1.525a2 2 0 102.828-2.828L14.354 8.328l1.525-1.525a2 2 0 10-2.825-2.825z" />
-            </svg>
-          </span>
         </div>
       )}
       <div className="space-y-6">
@@ -110,13 +140,13 @@ function Captions() {
         </div>
         <div className="space-y-12">
           {captionsData.data.captions.map((caption: any, index: number) => (
-            <div key={index} className="bg-black space-y-4 rounded-md">
+            <div key={index} className="bg-black rounded-md">
               <img
                 src={caption?.meme?.imageSmall}
                 alt="Meme"
                 className="w-full object-cover rounded-t-md"
               />
-              <div className="p-4 space-y-4">
+              <div className="p-3 space-y-3 pb-4">
                 <p className="font-medium text-justify">{caption?.text}</p>
                 <div className="flex justify-between">
                   {caption?.litCount ? (
@@ -132,7 +162,6 @@ function Captions() {
                     </Tooltip>
                     <Tooltip title="Delete this caption">
                       <DeleteOutlined
-                        // onClick={() => handleDeleteCaption(caption.id)}
                         onClick={async () =>
                           await handleDeleteCaption(caption.id)
                         }

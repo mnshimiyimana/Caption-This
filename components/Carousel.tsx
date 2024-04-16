@@ -8,9 +8,10 @@ import {
   CommentOutlined,
 } from "@ant-design/icons"
 import { Button, Tooltip } from "antd"
-import Theme from "./theme/Theme"
+
 import { useGetCaptionsQuery } from "../lib/services/captionEndpoints"
 import { usePutLitsMutation } from "@/lib/services/litsEndpoints"
+import Theme from "./theme/Button"
 function Carousel(props: any) {
   const [currentCaptions, setCurrentCaptions] = useState<any>()
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -84,14 +85,15 @@ function Carousel(props: any) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex justify-between gap-3">
         {captions.length > 0 && (
           <Theme>
             <Button
               type="primary"
               shape="circle"
-              icon={<LeftOutlined />}
+              size="small"
+              icon={<LeftOutlined style={{ fontSize: "12px" }} />}
               onClick={goToPreviousSlide}
             />
           </Theme>
@@ -110,56 +112,59 @@ function Carousel(props: any) {
             <Button
               type="primary"
               shape="circle"
-              icon={<RightOutlined />}
+              size="small"
+              icon={<RightOutlined style={{ fontSize: "12px" }} />}
               onClick={goToNextSlide}
             />
           </Theme>
         )}
       </div>
-      <div className="bg-grey rounded-md flex justify-between p-2">
-        <div className="flex gap-2">
-          {captions[currentIndex]?.litCount ? (
-            <Tooltip title="Unlit this caption">
-              <FireFilled
-                onClick={() =>
-                  handleLikeCaption(captions[currentIndex]?.id || "")
-                }
-                style={{ color: "#CB245C" }}
+      <div className="px-4">
+        <div className="bg-grey rounded-full flex justify-between p-2 px-3">
+          <div className="flex gap-2">
+            {captions[currentIndex]?.litCount ? (
+              <Tooltip title="Unlit this caption">
+                <FireFilled
+                  onClick={() =>
+                    handleLikeCaption(captions[currentIndex]?.id || "")
+                  }
+                  style={{ color: "#CB245C" }}
+                />
+              </Tooltip>
+            ) : (
+              <Tooltip title="Lit this caption">
+                <FireOutlined
+                  onClick={() =>
+                    handleLikeCaption(captions[currentIndex]?.id || "")
+                  }
+                />
+              </Tooltip>
+            )}
+            {/* <p>{captions[currentIndex]?.litCount}</p> */}
+          </div>
+
+          <div className="text-sm">
+            <p className="text-[#82878A]">
+              {captions.length > 0
+                ? `${currentIndex + 1}/${captions.length}`
+                : "0/0"}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Tooltip title={shareCaptionToolTip}>
+              <ShareAltOutlined
+                className="cursor-pointer"
+                onClick={onCopyCaption}
               />
             </Tooltip>
-          ) : (
-            <Tooltip title="Lit this caption">
-              <FireOutlined
-                onClick={() =>
-                  handleLikeCaption(captions[currentIndex]?.id || "")
-                }
+
+            <Tooltip title="Add caption to this meme">
+              <CommentOutlined
+                className="cursor-pointer"
+                onClick={props.onClick}
               />
             </Tooltip>
-          )}
-          {/* <p>{captions[currentIndex]?.litCount}</p> */}
-        </div>
-
-        <div className="text-sm">
-          <p>
-            {captions.length > 0
-              ? `${currentIndex + 1}/${captions.length}`
-              : "0/0"}
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Tooltip title={shareCaptionToolTip}>
-            <ShareAltOutlined
-              className="cursor-pointer"
-              onClick={onCopyCaption}
-            />
-          </Tooltip>
-
-          <Tooltip title="Add caption to this meme">
-            <CommentOutlined
-              className="cursor-pointer"
-              onClick={props.onClick}
-            />
-          </Tooltip>
+          </div>
         </div>
       </div>
     </div>

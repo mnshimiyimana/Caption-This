@@ -9,8 +9,8 @@ function Section1() {
   const pathname = usePathname()
   const icons = [
     { icon: <HomeOutlined />, title: "Home", destination: "/home" },
-    { icon: <FireOutlined />, title: "Featured", destination: "/featured" },
-    { icon: <UserOutlined />, title: "My Profile", destination: "/profile" },
+    { icon: <FireOutlined />, title: "My Memes", destination: "/featured" },
+    { icon: <UserOutlined />, title: "My Captions", destination: "/profile" },
   ]
   useEffect(() => {
     const processedPathname = pathname
@@ -18,16 +18,20 @@ function Section1() {
   }, [pathname])
 
   return (
-    <div className="bg-gray space-y-6 md:sticky top-28 max-h-[150px] pb-10 animate-fade-up animate-delay-300 animate-once">
+    <div className="bg-gray space-y-6 md:sticky md:top-20 md:pt-0 pt-8 max-h-[150px] pb-10 animate-fade-up animate-delay-300 animate-once">
       <div>
         {icons.map((item, index) => (
           <div
             key={index}
-            className={`flex text-md gap-2 space-y-3 font-base ${activeLink === item.destination ? "text-pink font-bold" : ""}`}
+            className={`flex text-md gap-2 space-y-3 font-base `}
           >
             <Link href={item.destination} className="flex gap-3 space-y-3">
-              <p className="pt-3">{item.icon}</p>
-              <span>{item.title}</span>
+              <p className="pt-3 font-extrabold">{item.icon}</p>
+              <span
+                className={`${activeLink === item.destination ? "text-pink font-bold" : ""}`}
+              >
+                {item.title}
+              </span>
             </Link>
           </div>
         ))}

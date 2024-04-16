@@ -1,4 +1,3 @@
-"use client"
 import { useEffect, useState } from "react"
 import { useGetMemesQuery } from "@/lib/services/memeEndpoints"
 import { useSelector } from "react-redux"
@@ -25,21 +24,7 @@ export const useHandleSwitchView = () => {
     size: 1,
   })
 
-  // console.log("the key:", searchQuery)
-
   const memes = response?.data?.data?.memes
-
-  console.log("memes:", memes)
-
-  // useEffect(() => {
-  //   if (memes?.length) {
-  //     if (!memesState.length || !currentPage) {
-  //       setMemesState(memes)
-  //     } else {
-  //       setMemesState([...memesState, ...memes])
-  //     }
-  //   }
-  // }, [memes])
 
   useEffect(() => {
     if (memes) {

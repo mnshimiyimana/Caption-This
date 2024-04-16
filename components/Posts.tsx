@@ -15,7 +15,7 @@ function Posts() {
 
   return (
     <div>
-      <div className="bg-[#1D1D1D] w-72 p-5 rounded-md space-y-8 ">
+      <div className="bg-[#1D1D1D] md:block hidden w-72 p-5 rounded-md space-y-8 ">
         <div className="space-y-3">
           <h2 className="font-medium">From the people you know</h2>
           <p className="text-slate text-xs">Lorem ipsum dolor sit amet.</p>
