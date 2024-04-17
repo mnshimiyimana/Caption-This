@@ -11,7 +11,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="bg-[#262626] h-full">
+    <div className="bg-[#262626] min-h-screen max-h-full">
       <Navbar onSearch={onSearch} />
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:px-24 md:px-16 px-10">
         <Section1 />

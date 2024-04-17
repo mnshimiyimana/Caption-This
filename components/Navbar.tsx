@@ -48,13 +48,15 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
   return (
     <div className="flex justify-between lg:px-24 md:px-16 px-8 py-2 border-b-2 border-black shadow-lg bg-gray sticky top-0 max-h-screen z-20 animate-fade-down animate-delay-300 animate-once  ">
       <div className="flex gap-3">
-        <Image
-          src={"/images/logo_icon_white.png"}
-          alt={"logo"}
-          width={28}
-          height={2}
-          className="max-h-[40px]"
-        />
+        <Link href={"/home"}>
+          <Image
+            src={"/images/logo_icon_white.png"}
+            alt={"logo"}
+            width={28}
+            height={2}
+            className="max-h-[40px] md:ml-0 ml-2"
+          />
+        </Link>
         <Link
           className="text-lg font-medium items-center md:flex hidden"
           href={"/home"}
@@ -89,7 +91,7 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
             className="object-cover rounded-full w-10 h-10 border-2 border-white"
           />
           <p className="text-sm items-center md:flex hidden ">
-            {userData?.lastName}
+            {userData?.firstName} {userData?.lastName}
           </p>
           {hovered && (
             <LogoutOutlined

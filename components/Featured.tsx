@@ -73,7 +73,7 @@ function Featured() {
       deleteMemeMutation({ memeId: memeIdToDelete })
         .unwrap()
         .then(res => {
-          console.log("RES: ", res)
+          // console.log("RES: ", res)
           const newMemesState = memesState.filter(
             meme => meme.id !== memeIdToDelete,
           )
@@ -142,10 +142,8 @@ function Featured() {
         </div>
       )}
       <div className="space-y-6">
-        <div className="text-xl font-semibold">
-          {/* My Captions ({memes.data.count}) */}
-        </div>
-        <div className="space-y-12">
+        <div className="text-xl font-semibold">My Memes ({memes?.length})</div>
+        <div className="space-y-12 animate-fade-up animate-delay-300 animate-once">
           {memesState.length > 0 ? (
             memesState.map((meme, index) => (
               <div key={index} className="bg-black rounded-md">

@@ -28,7 +28,7 @@ const memeEndpoints = api.injectEndpoints({
     }),
 
     getUserMemes: builder.query<any, { userId?: string; page: number }>({
-      providesTags: ["GetUserMemes"],
+      providesTags: ["GetUserMemes", "GetMemes"],
       query: ({ userId, page }) => ({
         params: { userId, page },
         url: `/memes/user/${userId}`,
@@ -36,7 +36,7 @@ const memeEndpoints = api.injectEndpoints({
     }),
 
     deleteMemes: builder.mutation<any, { memeId: string }>({
-      invalidatesTags: ["GetMemes"],
+      invalidatesTags: ["GetMemes", "GetCaptions"],
       query: ({ memeId }) => ({
         url: `/memes/${memeId}`,
         method: "DELETE",

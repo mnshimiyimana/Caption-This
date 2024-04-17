@@ -32,7 +32,7 @@ function Carousel(props: any) {
   const captions = currentCaptions || []
 
   useEffect(() => {
-    console.log("Captions data:", captionsData?.data?.captions)
+    // console.log("Captions data:", captionsData?.data?.captions)
   }, [captionsData])
 
   const goToNextSlide = () => {

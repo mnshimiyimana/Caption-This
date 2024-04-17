@@ -26,8 +26,6 @@ function Login() {
     }
   }, [googleToken, login])
 
-  // console.log({googleToken});
-
   const handleSignIn = async () => {
     try {
       const auth = getAuth()
@@ -35,16 +33,12 @@ function Login() {
       const result = await signInWithPopup(auth, provider)
       const user = result.user
       const idToken = await user.getIdToken()
-      console.log("Firebase ID token:", idToken)
-
-      // After getting the token, update the data state
+      // console.log("Firebase ID token:", idToken)
       setGoogleToken(idToken)
     } catch (error) {
-      // console.error("Error:", error)
+      console.error("Error:", error)
     }
   }
-
-  // const handleSignInWithGoogle = void ()()
 
   return (
     <div className="bg-gray h-screen">

@@ -11,7 +11,7 @@ const captionEndpoints = api.injectEndpoints({
     }),
 
     createCaptions: builder.mutation<any, { memeId: string; text: string }>({
-      invalidatesTags: ["GetCaptions"],
+      invalidatesTags: ["GetCaptions", "GetMemes"],
       query: ({ memeId, text }) => ({
         url: `/captions/meme/${memeId}`,
         method: "POST",
@@ -28,7 +28,7 @@ const captionEndpoints = api.injectEndpoints({
     }),
 
     deleteCaptions: builder.mutation<any, { captionId: string }>({
-      invalidatesTags: ["GetCaptions"],
+      invalidatesTags: ["GetCaptions", "GetMemes"],
       query: ({ captionId }) => ({
         url: `/captions/${captionId}`,
         method: "DELETE",

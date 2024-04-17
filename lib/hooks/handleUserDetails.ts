@@ -12,7 +12,6 @@ export interface UserData {
   id: string
   picture: string
   email: string
-  // Add other user data properties here as needed
 }
 
 const useUserData = (): UserData | undefined => {
@@ -32,7 +31,7 @@ const useUserData = (): UserData | undefined => {
         console.error("Error decoding token:", error)
       }
     }
-  }, []) // Empty dependency array to run effect only once
+  }, [])
 
   return userData
 }

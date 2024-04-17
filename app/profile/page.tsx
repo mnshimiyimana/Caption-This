@@ -9,7 +9,7 @@ import Captions from "@/components/Captions"
 function Page() {
   return (
     <div>
-      <div className="bg-gray h-full">
+      <div className="bg-gray min-h-screen max-h-full">
         <Navbar
           onSearch={function (value: string): void {
             throw new Error("Function not implemented.")

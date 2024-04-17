@@ -7,7 +7,7 @@ import {
   PicLeftOutlined,
   ExclamationCircleOutlined,
 } from "@ant-design/icons"
-import { Button, Spin } from "antd"
+import { Button } from "antd"
 import { useHandleSwitchView } from "./hooks"
 import { switchIconStyles } from "./consts"
 import Details from "@/components/Details"
@@ -62,8 +62,7 @@ function LandingPage() {
                     />
                     <p>No memes available</p>
                   </div>
-                ) : // Render memes if there are any
-                viewType === "Grid" ? (
+                ) : viewType === "Grid" ? (
                   <Explore memes={memesState} />
                 ) : (
                   <Details memes={memesState} />

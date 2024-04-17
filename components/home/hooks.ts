@@ -25,19 +25,7 @@ export const useHandleSwitchView = () => {
     size: 1,
   })
 
-  // console.log("the key:", searchQuery)
-
   const memes = response?.data?.data?.memes
-
-  // useEffect(() => {
-  //   if (memes?.length) {
-  //     if (!memesState.length || !currentPage) {
-  //       setMemesState(memes)
-  //     } else {
-  //       setMemesState([...memesState, ...memes])
-  //     }
-  //   }
-  // }, [memes])
 
   useEffect(() => {
     if (memes) {

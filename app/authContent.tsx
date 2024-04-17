@@ -71,8 +71,8 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue>({
   user: null,
   googleSignIn: async () => {
-    console.log("Something...")
-  }, // Changed to an async function
+    // console.log("Something...")
+  },
 })
 
 interface AuthContextProps {
