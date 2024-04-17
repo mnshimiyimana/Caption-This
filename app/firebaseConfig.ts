@@ -1,14 +1,23 @@
+import {
+  NEXT_PUBLIC_FIREBASE_API_KEY,
+  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  NEXT_PUBLIC_FIREBASE_APP_ID,
+  NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+} from "@/lib/constants"
 import { initializeApp } from "firebase/app"
 import { getAuth } from "firebase/auth"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBzzV02UNYSHF4eyT2shpWlDuT-W3-iy-U",
-  authDomain: "caption-this-417921.firebaseapp.com",
-  projectId: "caption-this-417921",
-  storageBucket: "caption-this-417921.appspot.com",
-  messagingSenderId: "873190843516",
-  appId: "1:873190843516:web:c796d67583b1d11d7655f9",
-  measurementId: "G-W571FK8MVL",
+  apiKey: NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 
 const app = initializeApp(firebaseConfig)

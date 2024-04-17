@@ -6,6 +6,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { useLazyLoginQuery } from "@/lib/services/authEndpoints"
 import { routes } from "@/lib/constants"
 import { useRouter } from "next/navigation"
+import { auth } from "../firebaseConfig"
 
 function Login() {
   const router = useRouter()
@@ -28,12 +29,10 @@ function Login() {
 
   const handleSignIn = async () => {
     try {
-      const auth = getAuth()
       const provider = new GoogleAuthProvider()
       const result = await signInWithPopup(auth, provider)
       const user = result.user
       const idToken = await user.getIdToken()
-      // console.log("Firebase ID token:", idToken)
       setGoogleToken(idToken)
     } catch (error) {
       console.error("Error:", error)
