@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Icons from "@/components/Icons"
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { useLazyLoginQuery } from "@/lib/services/authEndpoints"
 import { routes } from "@/lib/constants"
 import { useRouter } from "next/navigation"
