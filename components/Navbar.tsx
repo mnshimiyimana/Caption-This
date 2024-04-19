@@ -54,7 +54,7 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
             alt={"logo"}
             width={28}
             height={2}
-            className="max-h-[40px] md:ml-0"
+            className="max-h-[40px]"
           />
         </Link>
         <Link
