@@ -15,7 +15,7 @@ function Page() {
             throw new Error("Function not implemented.")
           }}
         />
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-24 md:px-16 px-10">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-24 md:px-16 px-4">
           <Section1 />
           <div className="pt-12">
             <Edit />

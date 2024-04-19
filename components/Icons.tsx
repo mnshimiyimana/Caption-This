@@ -33,7 +33,7 @@ function IconWrapper({ children, onClick = () => null }: IconProps) {
   return (
     <div
       onClick={onClick}
-      className="flex items-center justify-center rounded-full w-12 h-12 p-4 border-white border-2 cursor-pointer hover:scale-125"
+      className="flex items-center justify-center rounded-full w-12 h-12 p-4 border-white border-2 cursor-pointer hover:scale-110 duration-100"
     >
       {children}
     </div>

@@ -46,7 +46,7 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
   }
 
   return (
-    <div className="flex justify-between lg:px-24 md:px-16 px-8 py-2 border-b-2 border-black shadow-lg bg-gray sticky top-0 max-h-screen z-20 animate-fade-down animate-delay-300 animate-once  ">
+    <div className="flex justify-between lg:px-24 md:px-16 px-4 py-2 border-b-2 border-black shadow-lg bg-gray sticky top-0 max-h-screen z-20 animate-fade-down animate-delay-300 animate-once  ">
       <div className="flex gap-3">
         <Link href={"/home"}>
           <Image
@@ -54,7 +54,7 @@ function Navbar({ onSearch }: { onSearch: (value: string) => void }) {
             alt={"logo"}
             width={28}
             height={2}
-            className="max-h-[40px] md:ml-0 ml-2"
+            className="max-h-[40px] md:ml-0"
           />
         </Link>
         <Link

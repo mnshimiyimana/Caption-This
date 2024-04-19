@@ -3,7 +3,7 @@ import { api } from "./api"
 const captionEndpoints = api.injectEndpoints({
   endpoints: builder => ({
     getCaptions: builder.query<any, { memeId: string; page: number }>({
-      providesTags: ["GetCaptions"],
+      providesTags: ["GetCaptions", "GetMemes"],
       query: ({ memeId, page }) => ({
         params: { memeId, page: page ?? 0 },
         url: `/captions/meme/${memeId}`,

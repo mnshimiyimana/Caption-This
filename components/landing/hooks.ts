@@ -21,7 +21,6 @@ export const useHandleSwitchView = () => {
   const response = useGetMemesQuery({
     page: currentPage,
     search: searchKey,
-    size: 1,
   })
 
   const memes = response?.data?.data?.memes

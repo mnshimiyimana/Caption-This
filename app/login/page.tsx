@@ -7,11 +7,12 @@ import { useLazyLoginQuery } from "@/lib/services/authEndpoints"
 import { routes } from "@/lib/constants"
 import { useRouter } from "next/navigation"
 import { auth } from "../firebaseConfig"
+import { LoadingOutlined } from "@ant-design/icons"
 
 function Login() {
   const router = useRouter()
   const [googleToken, setGoogleToken] = useState<string | undefined>() // Initialize data state
-  const [login] = useLazyLoginQuery()
+  const [login, { isLoading }] = useLazyLoginQuery()
 
   useEffect(() => {
     if (googleToken) {
@@ -53,16 +54,27 @@ function Login() {
           </div>
           <p className="text-2xl font-medium">CaptionThis</p>
         </div>
-        <div className="text-center space-y-8 border-t w-80 pt-12">
-          <p> Sign in with</p>
-          <Icons
-            onClick={async () => {
-              await handleSignIn()
-            }}
-          />
-          <div>
-            <p className="text-xs">Skip</p>
-          </div>
+        <div
+          className={`text-center space-y-8 w-80  ${!isLoading ? "border-t pt-12" : ""}`}
+        >
+          {!isLoading && (
+            <>
+              <p> Sign in with</p>
+              <Icons
+                onClick={async () => {
+                  await handleSignIn()
+                }}
+              />
+            </>
+          )}
+
+          {isLoading && (
+            <div className="flex items-center gap-2 justify-center">
+              <LoadingOutlined className="text-pink" />
+
+              <p className="text-xs text-pink">Logging in..</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

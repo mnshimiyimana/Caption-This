@@ -12,7 +12,7 @@ const Edit: React.FC = () => {
     <div className="animate-fade-up animate-delay-300 animate-once">
       <div className="bg-black py-6 px-4 rounded-md">
         <div className="flex justify-between">
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             <div>
               {ddeta?.picture && (
                 <Image
@@ -26,7 +26,7 @@ const Edit: React.FC = () => {
             </div>
             <div className="text-xs grid items-center justify-center">
               {ddeta?.firstName && ddeta?.lastName && (
-                <p className="font-semibold">{`${ddeta?.firstName}_${ddeta?.lastName}`}</p>
+                <p className="font-semibold">{`${ddeta?.firstName} ${ddeta?.lastName}`}</p>
               )}
               {ddeta?.email && (
                 <span className="text-grey">{ddeta?.email}</span>

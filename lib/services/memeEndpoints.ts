@@ -10,7 +10,7 @@ const memeEndpoints = api.injectEndpoints({
       query: ({ page, search, size }) => ({
         params: {
           page: page ?? 0,
-          size: size ?? 10,
+          size: size ?? 12,
           search: search ?? "",
         },
         url: `/memes`,
